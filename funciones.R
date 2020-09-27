@@ -68,12 +68,12 @@ test_dif <- function(datos = semilla, i = i, variable = "SEMILLA"){
     }
     datos <- Selector(datos = semilla, i = i, variable = "SEMILLA")
     Homocedasticidad <- leveneTest(datos$Valor ~ datos$Tipo, center = "median")
-    ks_test <- kruskal.test(datos$Valor ~ datos$Tipo)
+    kw_test <- kruskal.test(datos$Valor ~ datos$Tipo)
     pos_hoc <- pairwise.wilcox.test(datos$Valor, datos$Tipo, p.adjust.method = "holm")
     tabla <- kable(pos_hoc$p.value)
     salida <<- list(nombre = nombre,
                     Homocedasticidad = Homocedasticidad, 
-                    ks_test = ks_test, 
+                    kw_test = kw_test, 
                     pos_hoc = pos_hoc, 
                     tabla = tabla)
     message('El argumento "salida$" le permitira tener acceso a los elementos del análisis')
